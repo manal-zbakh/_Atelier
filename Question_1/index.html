@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RegistrationForm_E-commerce</title>
+
+	<!-- MATERIAL DESIGN ICONIC FONT -->
+	<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+	<!-- STYLE CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<div class="wrapper" style="background-image: url('images/bg-registration-form-1.jpg');">
+		<div class="inner">
+			<div class="image-holder">
+				<img id="a" src="images/ecommerce-left-bg.jpg" alt="">
+			</div>
+			<form id="contactform">
+				<h3>Registration Form</h3>
+				<div class="form-group">
+					<input type="text" placeholder="First Name" class="form-control" id="form_first">
+					<span class="error_form" id="first_error_message"></span>
+					<input type="text" required placeholder="Last Name" class="form-control" id="form_last">
+					<span class="error_form" id="last_error_message"></span>
+				</div>
+				<div class="form-wrapper">
+					<input type="text" placeholder="Address" required class="form-control">
+					<i class="zmdi zmdi-account"></i>
+				</div>
+				<div class="form-wrapper">
+					<input type="tel" required placeholder="Phone" class="form-control" id="form_phone">
+					<span class="error_form" id="phone_error_message"></span>
+					<i class="zmdi zmdi-account"></i>
+				</div>
+				<div class="form-wrapper">
+					<input type="email" required placeholder="Email" class="form-control " id="form_email">
+					<span class="error_form" id="email_error_message"></span>
+					<i class="zmdi zmdi-email"></i>
+				</div>
+				<div class="form-wrapper">
+					<select name="" id="" class="form-control">
+						<option value=""   disabled selected>civility</option>
+						<option value="male">Male</option>
+						<option value="femal">Female</option>
+						<option value="other">Other</option>
+					</select>
+					<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+				</div>
+				<div class="form-wrapper">
+					<select name="" id="" class="form-control">
+						<option value="" disabled selected>country</option>
+						<option value="algeria">Algeria</option>
+						<option value="angola">Angola</option>
+						<option value="australia">Australia</option>
+						<option value="bahrain">Bahrain</option>
+						<option value="canada">Canada</option>
+						<option value="china">China</option>
+						<option value="denmark">Denmark</option>
+						<option value="egypt">Egypt</option>
+						<option value="france">France</option>
+						<option value="germany">Germany</option>
+						<option value="india">India</option>
+						<option value="japan">Japan</option>
+						<option value="kuwait">Kuwait</option>
+						<option value="mexico">Mexico</option>
+						<option value="morocco">Morocco</option>
+						<option value="portugal">Portugal</option>
+						<option value="russia">Russia</option>
+						<option value="saudi Arabia">Saudi Arabia</option>
+						<option value="slovakia">Slovakia</option>
+						<option value="south Africa">South Africa</option>
+						<option value="south Korea">South Korea</option>
+						<option value="spain">Spain</option>
+						<option value="tunisia">Tunisia</option>
+						<option value="turkey">Turkey</option>
+						<option value="united States of America">United States of America</option>
+						<option value="zimbabwe">Zimbabwe</option>
+						<option value="other">Other</option>
+					</select>
+					<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+				</div>
+				<div class="form-wrapper">
+					<input type="password" placeholder="Password" required class="form-control" id="form_password">
+					<span class="error_form" id="password_error_message"></span>
+					<i class="zmdi zmdi-lock"></i>
+				</div>
+				<div class="form-wrapper">
+					<input type="password" required placeholder="Confirm Password" class="form-control"
+						id="form_confirm_password">
+					<span class="error_form" id="confirm_password_error_message"></span>
+					<i class="zmdi zmdi-lock"></i>
+				</div>
+				<input type="submit" value="Register" onclick=" return is_submit()">
+			</form>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+
+		$("#first_error_message").hide();
+		$("#last_error_message").hide();
+		$("#phone_error_message").hide();
+		$("#email_error_message").hide();
+		$("#password_error_message").hide();
+		$("#confirm_password_error_message").hide();
+
+		function is_submit() {
+
+			if (check_last() && check_first() && check_email() && check_phone() && check_password() && check_confirm_password()) {
+				alert("Regestration Successfull");
+				return true;
+			} else {
+				alert("PLease Fill the form Correctly");
+				return false;
+			}
+		}
+
+
+		$("#form_first").focusout(function () {
+			check_first();
+		});
+		$("#form_last").focusout(function () {
+			check_last();
+		});
+		$("#form_phone").focusout(function () {
+			check_phone();
+		});
+		$("#form_email").focusout(function () {
+			check_email();
+		});
+		$("#form_password").focusout(function () {
+			check_password();
+		});
+		$("#form_confirm_password").focusout(function () {
+			check_confirm_password();
+		});
+        
+		//verifier le prenom
+		function check_first() {
+			var pattern = /^[a-zA-Z]+$/;
+			var first = $("#form_first").val();
+			if (pattern.test(first) && first != '') {
+				$("#first_error_message").hide();
+				$("#form_first").css("border-botom", "2px solid #34F458");
+
+				return true;
+			} else {
+				$("#first_error_message").html("Shoud contain only caracters");
+				$("#first_error_message").show();
+				$("#form_first").css("border-botom", "2px solid #F90A0A");
+				return false;
+			}
+
+		}
+
+        //verifier le nom
+		function check_last() {
+			var pattern = /^[a-zA-Z]+$/;
+			var last = $("#form_last").val();
+			if (pattern.test(last) && last != '') {
+				$("#last_error_message").hide();
+				$("#form_last").css("border-botom", "2px solid #34F458");
+
+				return true;
+			} else {
+				$("#last_error_message").html("Shoud contain only caracters");
+				$("#last_error_message").show();
+				$("#form_last").css("border-botom", "2px solid #F90A0A");
+				return false;
+			}
+
+		}
+
+
+        //verifier le phone
+		function check_phone() {
+			var pattern = /^[0-9]+$/;
+			var phone = $("#form_phone").val();
+			if (pattern.test(phone) && phone.length === 10) {
+				$("#phone_error_message").hide();
+				$("#form_phone").css("border-botom", "2px solid #34F458");
+
+				return true;
+			}
+			else {
+				$("#phone_error_message").html("Invalide Phone");
+				$("#phone_error_message").show();
+				$("#form_phone").css("border-botom", "2px solid #F90A0A");
+				return false;
+			}
+
+		}
+
+		//verifier l'email
+		function check_email() {
+			var pattern = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})$/;
+			var email = $("#form_email").val();
+			if (pattern.test(email) && email != '') {
+				$("#email_error_message").hide();
+				$("#form_email").css("border-botom", "2px solid #34F458");
+
+				return true;
+			}
+			else {
+				$("#email_error_message").html("Invalide Email");
+				$("#email_error_message").show();
+				$("#form_email").css("border-botom", "2px solid #F90A0A");
+				return false;
+			}
+
+		}
+
+		//verifier le mot de pass
+		function check_password() {
+			var password_lenght = $("#form_password").val().lenght;
+			if (password_lenght < 8) {
+				$("#password_error_message").html("Atleast 8 Characters");
+				$("#password_error_message").show();
+				$("#form_password").css("border-botom", "2px solid #F90A0A");
+				return false;
+			} else {
+				$("#password_error_message").hide();
+				$("#form_password").css("border-buttom", "2px solid #34F458");
+
+				return true;
+			}
+		}
+		function check_confirm_password() {
+			var password = $("#form_password").val();
+			var confirm_password = $("#form_confirm_password").val();
+			if (password != confirm_password) {
+				$("#confirm_password_error_message").html("Password did not marched");
+				$("#confirm_password_error_message").show();
+				$("#form_confirm_password").css("border-botom", "2px solid #F90A0A");
+
+				return false;
+			} else {
+				$("#confirm_password_error_message").hide();
+				$("#form_confirm_password").css("border-buttom", "2px solid #34F458");
+
+				return true;
+			}
+		}
+
+
+
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculatrice</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container base">
+        <div id="calc" class="base2">
+            <h6>Ma calculatrice toute simple: Calculatrice simple</h6>
+            <div class="row">
+                <input class="resultat" placeholder="0">
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-2">
+                    <p class="button">7</p>
+                </div>
+                <div class="col-2">
+                    <p class="button">8</p>
+                </div>
+                <div class="col-2">
+                    <p class="button">9</p>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <p style="background-color: #4A8CFA;" class="CE">CE</p>
+                </div>
+                <div class="col-2">
+                    <p style="background-color:#FA4A4A;" class="clear">C</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <p class="button">4</p>
+                </div>
+                <div class="col-2">
+                    <p class="button">5</p>
+                </div>
+                <div class="col-2">
+                    <p class="button">6</p>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <p class="button">/</p>
+                </div>
+                <div class="col-2">
+                    <p class="button">*</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <p class="button">1</p>
+                </div>
+                <div class="col-2">
+                    <p class="button">2</p>
+                </div>
+                <div class="col-2">
+                    <p class="button">3</p>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <p class="button">-</p>
+                </div>
+                <div class="col-2">
+                    <div>
+                        <p class=" button" id="plus">+</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row lastLine">
+                <div class="col-4">
+                    <p class="button">0</p>
+                </div>
+
+                <div class="col-2">
+                    <p class="button">.</p>
+                </div>
+                <div class="col-1"></div>
+
+                <div class="col-2">
+                    <p style="background-color: #F9EB4A;" id="equal">=</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+    $(function () {
+
+        $('.button').click(function () {
+            $('.resultat').val($('.resultat').val() + $(this).text());
+        });
+        $('.clear').click(function () {
+            $('.resultat').val(' ');
+        });
+        $('#equal').click(function () {
+            $('.resultat').val(eval($('.resultat').val()));
+        });
+        $('.CE').click(function () {
+            $('.resultat').val($('.resultat').val().slice(0, -1));
+        })
+
+    });
+</script>
+
+</html>
